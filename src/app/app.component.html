@@ -1,0 +1,24 @@
+<form [formGroup]="formData">
+
+  Name : <input type="text" name="name" #name formControlName="name"><br>
+  <div *ngIf = "formData.controls['name'].errors && formData.controls['name'].touched ">
+    <div *ngIf="formData.controls['name'].errors.required" style="background-color:'red'">There is error. Please enter a name</div>
+    <div [hidden]="formData.controls['name'].errors.minLength" style="background-color:'red'">There is error. Please have min length</div>
+  </div><br>
+
+  Name Error Status : {{formData.controls['name'].errors | json}}<br>
+  <br><br>
+
+  Email : <input type="text" name="email" #email formControlName="email">
+  <div *ngIf="formData.controls['email'].errors"> 
+    Please enter a valid Email Address </div>
+  <br><br>
+  Email Error Status : {{formData.controls['name'].errors | json}}<br>
+  <br><br>
+  <button type="submit" [disabled]="!formData.valid">
+    Save
+  </button>
+</form> 
+{{formData.status}}<br>
+Name Class : {{name.className}}<br>
+Email Class : {{email.className}}<br>
